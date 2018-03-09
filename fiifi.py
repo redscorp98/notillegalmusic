@@ -2,7 +2,7 @@ import spotipy, requests
 from spotipy.oauth2 import SpotifyClientCredentials
 from spotipy.util import prompt_for_user_token
 
-#import Downloader
+import Downloader
 global location
 global name
 global sp
