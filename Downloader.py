@@ -11,7 +11,7 @@ default = 'default'
 check = []
 q = 0
 
-def download(artist, title, track_num, album_artist, album):
+def download(artist, title, track_num, album_artist, album, playlistname):
     filename = setfilename(title,artist)
     hold = album
     #cwd = os.getcwd() + "/output/" #os.getcwd() returns the current diretory
