@@ -1,11 +1,12 @@
 import spotipy, requests
 from spotipy.oauth2 import SpotifyClientCredentials
 from spotipy.util import prompt_for_user_token
-import Downloader
+
+#import Downloader
 global location
 global name
 global sp
-global send
+
 def show_tracks(results, offset):
     for i, item in enumerate(results['items']):
         track = item['track']
@@ -28,7 +29,6 @@ def show_contents(playlists, select):
     global location
     global sp
     global pl
-    global send
     pl = 0
     if select == ".":
         if len(location) == 2:
@@ -42,7 +42,6 @@ def show_contents(playlists, select):
         if pl == select:
             print()
             print(playlist['name'])
-            send = playlist['name']
             location += [playlist['name']]
             print(' total tracks', playlist['tracks']['total'])
             results = sp.user_playlist(username, playlist['id'], fields="tracks,next")
@@ -68,7 +67,8 @@ def download(playlists):
             for i, item in enumerate(tracks['items']):
                 track = item['track']
                 Downloader.download(track['artists'][0]['name'], track['name'], i+1, "Various Artists", playlist['name'])
-        count += 1
+        else:
+            count += 1
 
 def sign_out():
     global location
