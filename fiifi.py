@@ -52,6 +52,7 @@ def show_contents(playlists, select):
                 tracks = sp.next(tracks)
                 show_tracks(tracks, offset)
                 offset += 1
+            return
 
 def download(playlists):
     global sp
@@ -66,7 +67,9 @@ def download(playlists):
             #tracks = sp.next(tracks)
             for i, item in enumerate(tracks['items']):
                 track = item['track']
-                Downloader.download(track['artists'][0]['name'], track['name'], i+1, "Various Artists", playlist['name'])
+                album = track['album']
+                Downloader.download(track['artists'][0]['name'], track['name'], i+1, "Various Artists", album['name'], playlist['name'])
+            return
         else:
             count += 1
 
