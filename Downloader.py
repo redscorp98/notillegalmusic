@@ -3,13 +3,12 @@ import youtube_dl, urllib, re, eyed3, os, subprocess
 from subprocess import call
 
 default = 'default'#literally is a placeholder not sure if the variable does anything
-check = []
-q = 0
-downloaded =0
+
+
+
 
 def download(artist, title, track_num, album_artist, album, playlistname, number_items):
     filename = setfilename(title,artist)
-    global q, downloaded
     #cwd = os.getcwd() + "/output/" #os.getcwd() returns the current diretory
     output_folder = os.getcwd() + "\\" + 'NA' + "\\"  #should i make this global rather than have it done every time the function is called?
     if not(os.path.isfile(output_folder+filename)) and not(os.path.isfile(os.getcwd()+ "\\"+playlistname+"\\"+filename)):
@@ -28,7 +27,7 @@ def download(artist, title, track_num, album_artist, album, playlistname, number
         os.rename(output_folder+"NA.mp3", output_folder+filename)    
     if not(os.path.isfile(os.getcwd()+'\\Artwork\\'+album+'.jpg')):
         os.system('sacad "'+artist+'" "' + album+ '" 600 "' + os.getcwd() +'\\Artwork\\' + album +'.jpg')		
-    if q == number_items: 
+    if track_num == number_items: 
             renameoutputfolder(playlistname)
 ydl_opts = {
     'outtmpl' : '/' + '%(default)s' + '/%(default)s.%(ext)s', 'format': 'bestaudio/best',
