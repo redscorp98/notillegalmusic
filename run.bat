@@ -8,6 +8,7 @@ pip install spotipy
 pip install youtube_dl
 pip install eyeD3
 pip install subprocess
+pip3 install sacad
 echo "1" > dat.txt
 )
 python fiifi.py
