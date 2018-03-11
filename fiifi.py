@@ -68,10 +68,11 @@ def download(playlists):
             for i, item in enumerate(tracks['items']):
                 track = item['track']
                 album = track['album']
-                Downloader.download(track['artists'][0]['name'], track['name'], i+1, "Various Artists", album['name'], playlist['name'])
+                Downloader.download(track['artists'][0]['name'], track['name'], i+1, "Various Artists", album['name'], playlist['name'],playlist['tracks']['total'])
             return
         else:
             count += 1
+
 
 def sign_out():
     global location
