@@ -6,11 +6,12 @@ def download(artist, title, track_num, album_artist, album, playlistname, number
     filename = createfilename(title,artist)
     output_folder = os.getcwd() + "\\" + playlistname + "\\"  #should i make this global rather than have it done every time the function is called?
     if not(os.path.isfile(os.getcwd()+ "\\"+playlistname+"\\"+filename+".mp3")):       
-        ydl_opts = {'quiet':True,'outtmpl' : '/' + playlistname + '/'+filename+'.%(ext)s', 'format': 'bestaudio/best',
+        ydl_opts = {'quiet':True, 'outtmpl' : '/' + playlistname + '/'+filename+'.%(ext)s', 'format': 'bestaudio/best',
         'postprocessors': [{
         'key': 'FFmpegExtractAudio',
         'preferredcodec': 'mp3',
         'preferredquality': '192',}], 'output':'video'}
+        print("Download Begin")
         query_string = urllib.parse.urlencode({"search_query" : artist + " " + title})  #where the user input
         html_content = urllib.request.urlopen("http://www.youtube.com/results?" + query_string)
         search_results = re.findall(r'href=\"\/watch\?v=(.{11})', html_content.read().decode())
@@ -23,6 +24,7 @@ def download(artist, title, track_num, album_artist, album, playlistname, number
         audio.tag.title = title
         audio.tag.track_num = track_num
         audio.tag.save()
+        print("Complete")
     else:
         print("File found in directory...")
 
