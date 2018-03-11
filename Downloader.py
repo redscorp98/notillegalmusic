@@ -1,13 +1,7 @@
 from __future__ import unicode_literals
-import youtube_dl
-import urllib.request
-import urllib.parse
-import re
-import eyed3
-import os
-import os.path
-import subprocess 
+import youtube_dl, urllib, re, eyed3, os, subprocess 
 from subprocess import call
+
 default = 'default'#literally is a placeholder not sure if the variable does anything
 check = []
 q = 0
