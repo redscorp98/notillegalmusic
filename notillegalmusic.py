@@ -109,7 +109,7 @@ class NotIllegal:
         count = 1
         for playlist in playlists['items']:
             if count == self.selection:
-                print("downloading " + '"'+ playlist['name']+'"')
+                print("Downloading", '"'+ playlist['name']+'"')
                 #print(' total tracks', playlist['tracks']['total'])
                 results = self.spotify.user_playlist(self.getUsername(), playlist['id'], fields="tracks,next")
                 tracks = results['tracks']

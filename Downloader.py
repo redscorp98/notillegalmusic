@@ -1,13 +1,14 @@
 from __future__ import unicode_literals
-import youtube_dl as yt_dl, urllib, re, eyed3, os, subprocess 
+import youtube_dl as yt_dl, urllib, re, eyed3, os, subprocess
 from subprocess import call
 
 def download(artist, title, track_num, album_artist, album, playlistname):
     song = Downloader() # not sure how best to call the object???
     filename = song.combine(title,artist)
     output_folder = os.getcwd() + "\\" + playlistname + "\\"  #should i make this global rather than have it done every time the function is called?
-    if not(os.path.isfile(os.getcwd()+ "\\"+playlistname+"\\"+filename+".mp3")):           
-        print("Download Begin")
+                                                              #dunno uno, we think different innit
+    if not(os.path.isfile(os.getcwd()+ "\\"+playlistname+"\\"+filename+".mp3")):
+        print("Download Begin ("+filename+")")
         query_string = urllib.parse.urlencode({"search_query" : artist + " " + title})  #where the user input
         html_content = urllib.request.urlopen("http://www.youtube.com/results?" + query_string)
         search_results = re.findall(r'href=\"\/watch\?v=(.{11})', html_content.read().decode())
@@ -22,7 +23,7 @@ def download(artist, title, track_num, album_artist, album, playlistname):
         audio.tag.save()
         print("Complete")
     else:
-        print("File found in directory...")
+        print("File found in directory... ("+filename+")")
 
 
 class Downloader(object):
@@ -32,7 +33,7 @@ class Downloader(object):
                 'key': 'FFmpegExtractAudio',
                 'preferredcodec': 'mp3',
                 'preferredquality': '192',}], 'output':'video'}
-        return ydl_opts 
+        return ydl_opts
 
     def combine(self,back, lead):
         collect = lead + " - " + back
